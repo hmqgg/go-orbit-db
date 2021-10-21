@@ -6,14 +6,14 @@ import (
 	coreapi "github.com/ipfs/interface-go-ipfs-core"
 	"github.com/pkg/errors"
 
-	"berty.tech/go-orbit-db/accesscontroller/ipfs"
-	"berty.tech/go-orbit-db/accesscontroller/orbitdb"
-	"berty.tech/go-orbit-db/accesscontroller/simple"
-	"berty.tech/go-orbit-db/baseorbitdb"
-	"berty.tech/go-orbit-db/iface"
-	"berty.tech/go-orbit-db/stores/documentstore"
-	"berty.tech/go-orbit-db/stores/eventlogstore"
-	"berty.tech/go-orbit-db/stores/kvstore"
+	"github.com/hmqgg/go-orbit-db/accesscontroller/ipfs"
+	"github.com/hmqgg/go-orbit-db/accesscontroller/orbitdb"
+	"github.com/hmqgg/go-orbit-db/accesscontroller/simple"
+	"github.com/hmqgg/go-orbit-db/baseorbitdb"
+	"github.com/hmqgg/go-orbit-db/iface"
+	"github.com/hmqgg/go-orbit-db/stores/documentstore"
+	"github.com/hmqgg/go-orbit-db/stores/eventlogstore"
+	"github.com/hmqgg/go-orbit-db/stores/kvstore"
 )
 
 type orbitDB struct {

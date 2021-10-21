@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"berty.tech/go-orbit-db/address"
+	"github.com/hmqgg/go-orbit-db/address"
 	"github.com/stretchr/testify/require"
 )
 

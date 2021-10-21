@@ -5,8 +5,8 @@ import (
 
 	ipfslog "berty.tech/go-ipfs-log"
 	"berty.tech/go-ipfs-log/identityprovider"
-	"berty.tech/go-orbit-db/accesscontroller"
-	"berty.tech/go-orbit-db/events"
+	"github.com/hmqgg/go-orbit-db/accesscontroller"
+	"github.com/hmqgg/go-orbit-db/events"
 	cid "github.com/ipfs/go-cid"
 	coreapi "github.com/ipfs/interface-go-ipfs-core"
 )

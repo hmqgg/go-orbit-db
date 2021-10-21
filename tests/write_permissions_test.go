@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	orbitdb "berty.tech/go-orbit-db"
-	"berty.tech/go-orbit-db/accesscontroller"
-	"berty.tech/go-orbit-db/iface"
-	"berty.tech/go-orbit-db/stores"
+	orbitdb "github.com/hmqgg/go-orbit-db"
+	"github.com/hmqgg/go-orbit-db/accesscontroller"
+	"github.com/hmqgg/go-orbit-db/iface"
+	"github.com/hmqgg/go-orbit-db/stores"
 	"github.com/stretchr/testify/require"
 )
 

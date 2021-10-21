@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 
 	"berty.tech/go-ipfs-log/entry"
-	"berty.tech/go-orbit-db/iface"
+	"github.com/hmqgg/go-orbit-db/iface"
 	cid "github.com/ipfs/go-cid"
 	datastore "github.com/ipfs/go-datastore"
 	files "github.com/ipfs/go-ipfs-files"

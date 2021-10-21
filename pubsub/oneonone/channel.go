@@ -14,9 +14,9 @@ import (
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
 
-	"berty.tech/go-orbit-db/events"
-	"berty.tech/go-orbit-db/iface"
-	"berty.tech/go-orbit-db/pubsub"
+	"github.com/hmqgg/go-orbit-db/events"
+	"github.com/hmqgg/go-orbit-db/iface"
+	"github.com/hmqgg/go-orbit-db/pubsub"
 )
 
 const PROTOCOL = "ipfs-pubsub-direct-channel/v1"

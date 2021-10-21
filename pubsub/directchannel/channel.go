@@ -16,9 +16,9 @@ import (
 	"github.com/libp2p/go-libp2p-core/protocol"
 	"go.uber.org/zap"
 
-	"berty.tech/go-orbit-db/events"
-	"berty.tech/go-orbit-db/iface"
-	"berty.tech/go-orbit-db/pubsub"
+	"github.com/hmqgg/go-orbit-db/events"
+	"github.com/hmqgg/go-orbit-db/iface"
+	"github.com/hmqgg/go-orbit-db/pubsub"
 )
 
 const PROTOCOL = "/go-orbit-db/ipfs-direct-channel/1.0.0"

@@ -4,7 +4,7 @@ import (
 	"sync"
 
 	ipfslog "berty.tech/go-ipfs-log"
-	"berty.tech/go-orbit-db/iface"
+	"github.com/hmqgg/go-orbit-db/iface"
 )
 
 type eventIndex struct {

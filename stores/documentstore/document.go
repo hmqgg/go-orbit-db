@@ -7,10 +7,10 @@ import (
 	"strings"
 
 	"berty.tech/go-ipfs-log/identityprovider"
-	"berty.tech/go-orbit-db/address"
-	"berty.tech/go-orbit-db/iface"
-	"berty.tech/go-orbit-db/stores/basestore"
-	"berty.tech/go-orbit-db/stores/operation"
+	"github.com/hmqgg/go-orbit-db/address"
+	"github.com/hmqgg/go-orbit-db/iface"
+	"github.com/hmqgg/go-orbit-db/stores/basestore"
+	"github.com/hmqgg/go-orbit-db/stores/operation"
 
 	coreapi "github.com/ipfs/interface-go-ipfs-core"
 )

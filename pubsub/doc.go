@@ -1,2 +1,2 @@
 // pubsub a publish subscribe client for IPFS PubSub
-package pubsub // import "berty.tech/go-orbit-db/pubsub"
+package pubsub // import "github.com/hmqgg/go-orbit-db/pubsub"

@@ -1,2 +1,2 @@
 // events defines an event subscriber and dispatcher
-package events // import "berty.tech/go-orbit-db/events"
+package events // import "github.com/hmqgg/go-orbit-db/events"

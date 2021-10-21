@@ -2,8 +2,8 @@ package stores
 
 import (
 	ipfslog "berty.tech/go-ipfs-log"
-	"berty.tech/go-orbit-db/address"
-	"berty.tech/go-orbit-db/stores/replicator"
+	"github.com/hmqgg/go-orbit-db/address"
+	"github.com/hmqgg/go-orbit-db/stores/replicator"
 	cid "github.com/ipfs/go-cid"
 	p2pcore "github.com/libp2p/go-libp2p-core"
 )

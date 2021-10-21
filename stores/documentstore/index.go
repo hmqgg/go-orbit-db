@@ -5,8 +5,8 @@ import (
 	"sync"
 
 	ipfslog "berty.tech/go-ipfs-log"
-	"berty.tech/go-orbit-db/iface"
-	"berty.tech/go-orbit-db/stores/operation"
+	"github.com/hmqgg/go-orbit-db/iface"
+	"github.com/hmqgg/go-orbit-db/stores/operation"
 )
 
 type documentIndex struct {

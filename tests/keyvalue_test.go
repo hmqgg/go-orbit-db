@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	orbitdb "berty.tech/go-orbit-db"
-	"berty.tech/go-orbit-db/iface"
+	orbitdb "github.com/hmqgg/go-orbit-db"
+	"github.com/hmqgg/go-orbit-db/iface"
 	"github.com/stretchr/testify/require"
 )
 

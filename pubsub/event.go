@@ -3,8 +3,8 @@ package pubsub
 import (
 	"github.com/libp2p/go-libp2p-core/peer"
 
-	"berty.tech/go-orbit-db/events"
-	"berty.tech/go-orbit-db/iface"
+	"github.com/hmqgg/go-orbit-db/events"
+	"github.com/hmqgg/go-orbit-db/iface"
 )
 
 // Creates a new Message event

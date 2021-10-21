@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"berty.tech/go-orbit-db/iface"
+	"github.com/hmqgg/go-orbit-db/iface"
 	"github.com/libp2p/go-libp2p-core/host"
 	mocknet "github.com/libp2p/go-libp2p/p2p/net/mock"
 	"github.com/stretchr/testify/assert"

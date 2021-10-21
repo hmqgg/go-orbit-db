@@ -6,7 +6,7 @@ import (
 	"berty.tech/go-ipfs-log/accesscontroller"
 	"berty.tech/go-ipfs-log/iface"
 
-	"berty.tech/go-orbit-db/events"
+	"github.com/hmqgg/go-orbit-db/events"
 	"go.uber.org/zap"
 )
 

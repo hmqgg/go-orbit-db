@@ -7,9 +7,9 @@ import (
 	"strings"
 	"testing"
 
-	orbitdb "berty.tech/go-orbit-db"
-	"berty.tech/go-orbit-db/iface"
-	"berty.tech/go-orbit-db/stores/operation"
+	orbitdb "github.com/hmqgg/go-orbit-db"
+	"github.com/hmqgg/go-orbit-db/iface"
+	"github.com/hmqgg/go-orbit-db/stores/operation"
 	cid "github.com/ipfs/go-cid"
 	"github.com/stretchr/testify/require"
 )

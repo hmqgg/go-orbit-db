@@ -7,12 +7,12 @@ import (
 	"testing"
 	"time"
 
-	orbitdb "berty.tech/go-orbit-db"
-	"berty.tech/go-orbit-db/address"
-	"berty.tech/go-orbit-db/iface"
-	"berty.tech/go-orbit-db/stores"
-	"berty.tech/go-orbit-db/stores/basestore"
-	"berty.tech/go-orbit-db/stores/operation"
+	orbitdb "github.com/hmqgg/go-orbit-db"
+	"github.com/hmqgg/go-orbit-db/address"
+	"github.com/hmqgg/go-orbit-db/iface"
+	"github.com/hmqgg/go-orbit-db/stores"
+	"github.com/hmqgg/go-orbit-db/stores/basestore"
+	"github.com/hmqgg/go-orbit-db/stores/operation"
 	"github.com/stretchr/testify/require"
 )
 

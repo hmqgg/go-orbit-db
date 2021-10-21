@@ -10,7 +10,7 @@ import (
 	"time"
 
 	ipfslog "berty.tech/go-ipfs-log"
-	"berty.tech/go-orbit-db/events"
+	"github.com/hmqgg/go-orbit-db/events"
 	cid "github.com/ipfs/go-cid"
 	"github.com/pkg/errors"
 	otkv "go.opentelemetry.io/otel/attribute"

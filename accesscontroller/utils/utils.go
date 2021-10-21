@@ -3,8 +3,8 @@ package utils
 import (
 	"context"
 
-	"berty.tech/go-orbit-db/accesscontroller"
-	"berty.tech/go-orbit-db/iface"
+	"github.com/hmqgg/go-orbit-db/accesscontroller"
+	"github.com/hmqgg/go-orbit-db/iface"
 	cid "github.com/ipfs/go-cid"
 	"github.com/pkg/errors"
 )
