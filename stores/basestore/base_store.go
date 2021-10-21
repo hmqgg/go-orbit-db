@@ -14,6 +14,7 @@ import (
 	"berty.tech/go-ipfs-log/enc"
 	"berty.tech/go-ipfs-log/entry"
 	"berty.tech/go-ipfs-log/identityprovider"
+	ipfslogiface "berty.tech/go-ipfs-log/iface"
 	"berty.tech/go-orbit-db/accesscontroller"
 	"berty.tech/go-orbit-db/accesscontroller/simple"
 	"berty.tech/go-orbit-db/address"
@@ -486,7 +487,11 @@ func (b *BaseStore) Sync(ctx context.Context, heads []ipfslog.Entry) error {
 			continue
 		}
 
-		hash, err := b.IO().Write(ctx, b.IPFS(), h, nil)
+		hash, err := b.IO().Write(ctx, b.IPFS(), h, &ipfslogiface.WriteOpts{
+			Pin:                 true,
+			EncryptedLinks:      "",
+			EncryptedLinksNonce: "",
+		})
 		if err != nil {
 			span.AddEvent("store-sync-cant-write", trace.WithAttributes(otkv.String("error", err.Error())))
 			return errors.Wrap(err, "unable to write entry on dag")
