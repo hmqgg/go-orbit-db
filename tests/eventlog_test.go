@@ -71,7 +71,7 @@ func TestLogDatabase(t *testing.T) {
 		require.Equal(t, len(res), 0)
 
 		////// returns the added entry's hash, 1 entry
-		op, err := db.Add(ctx, []byte("hello1"))
+		op, err := db.Add(ctx, []byte("hello1"), false)
 		require.NoError(t, err)
 
 		ops, err := db.List(ctx, &orbitdb.StreamOptions{Amount: &infinity})
@@ -92,7 +92,7 @@ func TestLogDatabase(t *testing.T) {
 
 		prevHash := ops[0].GetEntry().GetHash()
 
-		op, err = db.Add(ctx, []byte("hello2"))
+		op, err = db.Add(ctx, []byte("hello2"), false)
 		require.NoError(t, err)
 
 		ops, err = db.List(ctx, &orbitdb.StreamOptions{Amount: &infinity})
@@ -112,7 +112,7 @@ func TestLogDatabase(t *testing.T) {
 		defer db.Close()
 
 		for i := 1; i <= 5; i++ {
-			_, err := db.Add(ctx, []byte(fmt.Sprintf("hello%d", i)))
+			_, err := db.Add(ctx, []byte(fmt.Sprintf("hello%d", i)), false)
 			require.NoError(t, err)
 		}
 
@@ -134,7 +134,7 @@ func TestLogDatabase(t *testing.T) {
 
 		msg := bytes.Repeat([]byte("a"), 1024)
 
-		op, err := db.Add(ctx, msg)
+		op, err := db.Add(ctx, msg, false)
 		require.NoError(t, err)
 		require.True(t, strings.HasPrefix(op.GetEntry().GetHash().String(), "bafy"))
 	})
@@ -159,7 +159,7 @@ func TestLogDatabase(t *testing.T) {
 			require.NoError(t, err)
 
 			for i := 0; i < itemCount; i++ {
-				op, err := db.Add(ctx, []byte(fmt.Sprintf("hello%d", i)))
+				op, err := db.Add(ctx, []byte(fmt.Sprintf("hello%d", i)), false)
 				require.NoError(t, err)
 				ops = append(ops, op)
 			}

@@ -71,7 +71,7 @@ func testingKeyValueStore(t *testing.T, dir string) {
 		_, db, cleanup := setupTestingKeyValueStore(ctx, t, dir)
 		defer cleanup()
 
-		_, err := db.Put(ctx, "key1", []byte("hello1"))
+		_, err := db.Put(ctx, "key1", []byte("hello1"), false)
 		require.NoError(t, err)
 
 		value, err := db.Get(ctx, "key1")
@@ -83,7 +83,7 @@ func testingKeyValueStore(t *testing.T, dir string) {
 		_, db, cleanup := setupTestingKeyValueStore(ctx, t, dir)
 		defer cleanup()
 
-		_, err := db.Put(ctx, "key1", []byte("hello2"))
+		_, err := db.Put(ctx, "key1", []byte("hello2"), false)
 		require.NoError(t, err)
 
 		value, err := db.Get(ctx, "key1")
@@ -95,10 +95,10 @@ func testingKeyValueStore(t *testing.T, dir string) {
 		_, db, cleanup := setupTestingKeyValueStore(ctx, t, dir)
 		defer cleanup()
 
-		_, err := db.Put(ctx, "key1", []byte("hello3"))
+		_, err := db.Put(ctx, "key1", []byte("hello3"), false)
 		require.NoError(t, err)
 
-		_, err = db.Put(ctx, "key1", []byte("hello4"))
+		_, err = db.Put(ctx, "key1", []byte("hello4"), false)
 		require.NoError(t, err)
 
 		value, err := db.Get(ctx, "key1")
@@ -110,13 +110,13 @@ func testingKeyValueStore(t *testing.T, dir string) {
 		_, db, cleanup := setupTestingKeyValueStore(ctx, t, dir)
 		defer cleanup()
 
-		_, err := db.Put(ctx, "key1", []byte("hello1"))
+		_, err := db.Put(ctx, "key1", []byte("hello1"), false)
 		require.NoError(t, err)
 
-		_, err = db.Put(ctx, "key2", []byte("hello2"))
+		_, err = db.Put(ctx, "key2", []byte("hello2"), false)
 		require.NoError(t, err)
 
-		_, err = db.Put(ctx, "key3", []byte("hello3"))
+		_, err = db.Put(ctx, "key3", []byte("hello3"), false)
 		require.NoError(t, err)
 
 		v1, err := db.Get(ctx, "key1")
@@ -137,10 +137,10 @@ func testingKeyValueStore(t *testing.T, dir string) {
 		_, db, cleanup := setupTestingKeyValueStore(ctx, t, dir)
 		defer cleanup()
 
-		_, err := db.Put(ctx, "key1", []byte("hello!"))
+		_, err := db.Put(ctx, "key1", []byte("hello!"), false)
 		require.NoError(t, err)
 
-		_, err = db.Delete(ctx, "key1")
+		_, err = db.Delete(ctx, "key1", false)
 		require.NoError(t, err)
 
 		value, err := db.Get(ctx, "key1")
@@ -152,16 +152,16 @@ func testingKeyValueStore(t *testing.T, dir string) {
 		_, db, cleanup := setupTestingKeyValueStore(ctx, t, dir)
 		defer cleanup()
 
-		_, err := db.Put(ctx, "key1", []byte("hello1"))
+		_, err := db.Put(ctx, "key1", []byte("hello1"), false)
 		require.NoError(t, err)
 
-		_, err = db.Put(ctx, "key1", []byte("hello2"))
+		_, err = db.Put(ctx, "key1", []byte("hello2"), false)
 		require.NoError(t, err)
 
-		_, err = db.Put(ctx, "key1", []byte("hello3"))
+		_, err = db.Put(ctx, "key1", []byte("hello3"), false)
 		require.NoError(t, err)
 
-		_, err = db.Delete(ctx, "key1")
+		_, err = db.Delete(ctx, "key1", false)
 		require.NoError(t, err)
 
 		value, err := db.Get(ctx, "key1")

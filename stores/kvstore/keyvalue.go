@@ -35,10 +35,10 @@ func (o *orbitDBKeyValue) All() map[string][]byte {
 	return copiedIndex
 }
 
-func (o *orbitDBKeyValue) Put(ctx context.Context, key string, value []byte) (operation.Operation, error) {
+func (o *orbitDBKeyValue) Put(ctx context.Context, key string, value []byte, pin bool) (operation.Operation, error) {
 	op := operation.NewOperation(&key, "PUT", value)
 
-	e, err := o.AddOperation(ctx, op, nil)
+	e, err := o.AddOperation(ctx, op, nil, pin)
 	if err != nil {
 		return nil, errors.Wrap(err, "error while adding value")
 	}
@@ -51,10 +51,10 @@ func (o *orbitDBKeyValue) Put(ctx context.Context, key string, value []byte) (op
 	return op, nil
 }
 
-func (o *orbitDBKeyValue) Delete(ctx context.Context, key string) (operation.Operation, error) {
+func (o *orbitDBKeyValue) Delete(ctx context.Context, key string, pin bool) (operation.Operation, error) {
 	op := operation.NewOperation(&key, "DEL", nil)
 
-	e, err := o.AddOperation(ctx, op, nil)
+	e, err := o.AddOperation(ctx, op, nil, pin)
 	if err != nil {
 		return nil, errors.Wrap(err, "error while deleting value")
 	}

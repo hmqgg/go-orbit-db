@@ -71,7 +71,7 @@ func testLogAppendReplicate(t *testing.T, amount int, nodeGen func(t *testing.T,
 	infinity := -1
 
 	for i := 0; i < amount; i++ {
-		_, err = store0.Add(ctx, []byte(fmt.Sprintf("hello%d", i)))
+		_, err = store0.Add(ctx, []byte(fmt.Sprintf("hello%d", i)), false)
 		require.NoError(t, err)
 	}
 
@@ -240,12 +240,12 @@ func testLogAppendReplicateMultipeer(t *testing.T, amount int, nodeGen func(t *t
 		go func(i int) {
 			var err error
 			defer wg.Done()
-			_, err = stores[i].Add(ctx, []byte(fmt.Sprintf("PingPong")))
-			_, err = stores[i].Add(ctx, []byte(fmt.Sprintf("PingPong")))
-			_, err = stores[i].Add(ctx, []byte(fmt.Sprintf("PingPong")))
-			_, err = stores[i].Add(ctx, []byte(fmt.Sprintf("PingPong")))
-			_, err = stores[i].Add(ctx, []byte(fmt.Sprintf("PingPong")))
-			_, err = stores[i].Add(ctx, []byte(fmt.Sprintf("hello%d", i)))
+			_, err = stores[i].Add(ctx, []byte(fmt.Sprintf("PingPong")), false)
+			_, err = stores[i].Add(ctx, []byte(fmt.Sprintf("PingPong")), false)
+			_, err = stores[i].Add(ctx, []byte(fmt.Sprintf("PingPong")), false)
+			_, err = stores[i].Add(ctx, []byte(fmt.Sprintf("PingPong")), false)
+			_, err = stores[i].Add(ctx, []byte(fmt.Sprintf("PingPong")), false)
+			_, err = stores[i].Add(ctx, []byte(fmt.Sprintf("hello%d", i)), false)
 			require.NoError(t, err)
 		}(i)
 	}
@@ -421,7 +421,7 @@ func TestLogAppendReplicateEncrypted(t *testing.T) {
 	infinity := -1
 
 	for i := 0; i < amount; i++ {
-		_, err = store0.Add(ctx, []byte(fmt.Sprintf("hello%d", i)))
+		_, err = store0.Add(ctx, []byte(fmt.Sprintf("hello%d", i)), false)
 		require.NoError(t, err)
 	}
 
@@ -495,7 +495,7 @@ func TestLogAppendReplicateEncryptedWrongKey(t *testing.T) {
 	infinity := -1
 
 	for i := 0; i < amount; i++ {
-		_, err = store0.Add(ctx, []byte(fmt.Sprintf("hello%d", i)))
+		_, err = store0.Add(ctx, []byte(fmt.Sprintf("hello%d", i)), false)
 		require.NoError(t, err)
 	}
 

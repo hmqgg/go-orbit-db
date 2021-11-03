@@ -69,10 +69,10 @@ func TestWritePermissions(t *testing.T) {
 			require.NoError(t, err)
 			defer db2.Close()
 
-			_, err = db1.Add(ctx, []byte("hello"))
+			_, err = db1.Add(ctx, []byte("hello"), false)
 			require.NoError(t, err)
 
-			_, err = db2.Add(ctx, []byte("hello"))
+			_, err = db2.Add(ctx, []byte("hello"), false)
 			require.NoError(t, err)
 
 			values, err := db1.List(ctx, nil)
@@ -114,7 +114,7 @@ func TestWritePermissions(t *testing.T) {
 			require.NoError(t, err)
 			defer db2.Close()
 
-			_, err = db2.Add(ctx, []byte("hello"))
+			_, err = db2.Add(ctx, []byte("hello"), false)
 			require.NoError(t, err)
 
 			require.Equal(t, db1.OpLog().Len(), 0)
@@ -156,7 +156,7 @@ func TestWritePermissions(t *testing.T) {
 			require.NoError(t, err)
 			defer db2.Close()
 
-			_, err = db2.Add(ctx, []byte("hello"))
+			_, err = db2.Add(ctx, []byte("hello"), false)
 			require.NoError(t, err)
 
 			require.Equal(t, db1.OpLog().Len(), 0)
@@ -210,7 +210,7 @@ func TestWritePermissions(t *testing.T) {
 
 			}()
 
-			_, err = db2.Add(ctx, []byte("hello"))
+			_, err = db2.Add(ctx, []byte("hello"), false)
 			require.Error(t, err)
 
 			<-subCtx.Done()
@@ -223,7 +223,7 @@ func TestWritePermissions(t *testing.T) {
 			require.Equal(t, db1.OpLog().Len(), 0)
 			require.Equal(t, db2.OpLog().Len(), 0)
 
-			_, err = db1.Add(ctx, []byte("hello"))
+			_, err = db1.Add(ctx, []byte("hello"), false)
 			require.NoError(t, err)
 
 			<-subCtx.Done()
@@ -260,7 +260,7 @@ func TestWritePermissions(t *testing.T) {
 			require.NoError(t, err)
 			defer db2.Close()
 
-			_, err = db2.Add(ctx, []byte("hello"))
+			_, err = db2.Add(ctx, []byte("hello"), false)
 			require.Error(t, err)
 		})
 	})

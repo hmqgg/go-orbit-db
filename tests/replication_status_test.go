@@ -76,7 +76,7 @@ func TestReplicationStatus(t *testing.T) {
 		subSetup := func(t *testing.T) func() {
 			mainSetupCleanup := setup(t)
 
-			_, err := db.Add(ctx, []byte("hello"))
+			_, err := db.Add(ctx, []byte("hello"), false)
 			require.NoError(t, err)
 
 			require.Nil(t, db.Close())
@@ -108,7 +108,7 @@ func TestReplicationStatus(t *testing.T) {
 
 		t.Run("has correct replication info after sync", func(t *testing.T) {
 			defer subSetup(t)()
-			_, err := db.Add(ctx, []byte("hello2"))
+			_, err := db.Add(ctx, []byte("hello2"), false)
 			require.NoError(t, err)
 
 			require.Equal(t, db.ReplicationStatus().GetBuffered(), 0)
@@ -150,7 +150,7 @@ func TestReplicationStatus(t *testing.T) {
 
 		t.Run("has correct replication info after loading from snapshot", func(t *testing.T) {
 			defer subSetup(t)()
-			_, err := db.Add(ctx, []byte("hello2"))
+			_, err := db.Add(ctx, []byte("hello2"), false)
 			require.NoError(t, err)
 
 			_, err = basestore.SaveSnapshot(ctx, db)

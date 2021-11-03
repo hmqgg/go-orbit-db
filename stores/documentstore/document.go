@@ -80,7 +80,7 @@ func (o *orbitDBDocumentStore) Get(ctx context.Context, key string, opts *iface.
 	return documents, nil
 }
 
-func (o *orbitDBDocumentStore) Put(ctx context.Context, document interface{}) (operation.Operation, error) {
+func (o *orbitDBDocumentStore) Put(ctx context.Context, document interface{}, pin bool) (operation.Operation, error) {
 	key, err := o.docOpts.KeyExtractor(document)
 	if err != nil {
 		return nil, fmt.Errorf("unable to extract key from value: %w", err)
@@ -93,7 +93,7 @@ func (o *orbitDBDocumentStore) Put(ctx context.Context, document interface{}) (o
 
 	op := operation.NewOperation(&key, "PUT", data)
 
-	e, err := o.AddOperation(ctx, op, nil)
+	e, err := o.AddOperation(ctx, op, nil, pin)
 	if err != nil {
 		return nil, fmt.Errorf("error while adding operation: %w", err)
 	}
@@ -106,14 +106,14 @@ func (o *orbitDBDocumentStore) Put(ctx context.Context, document interface{}) (o
 	return op, nil
 }
 
-func (o *orbitDBDocumentStore) Delete(ctx context.Context, key string) (operation.Operation, error) {
+func (o *orbitDBDocumentStore) Delete(ctx context.Context, key string, pin bool) (operation.Operation, error) {
 	if e := o.Index().Get(key); e == nil {
 		return nil, fmt.Errorf("no entry with key '%s' in database", key)
 	}
 
 	op := operation.NewOperation(&key, "DEL", nil)
 
-	e, err := o.AddOperation(ctx, op, nil)
+	e, err := o.AddOperation(ctx, op, nil, pin)
 	if err != nil {
 		return nil, fmt.Errorf("error while adding operation: %w", err)
 	}
@@ -127,7 +127,7 @@ func (o *orbitDBDocumentStore) Delete(ctx context.Context, key string) (operatio
 }
 
 // PutBatch Add values as multiple operations and returns the latest
-func (o *orbitDBDocumentStore) PutBatch(ctx context.Context, values []interface{}) (operation.Operation, error) {
+func (o *orbitDBDocumentStore) PutBatch(ctx context.Context, values []interface{}, pin bool) (operation.Operation, error) {
 	if len(values) == 0 {
 		return nil, fmt.Errorf("nothing to add to the store")
 	}
@@ -135,7 +135,7 @@ func (o *orbitDBDocumentStore) PutBatch(ctx context.Context, values []interface{
 	op := operation.Operation(nil)
 	var err error
 	for _, val := range values {
-		op, err = o.Put(ctx, val)
+		op, err = o.Put(ctx, val, pin)
 		if err != nil {
 			return nil, fmt.Errorf("unable to add data to the store: %w", err)
 		}
@@ -145,7 +145,7 @@ func (o *orbitDBDocumentStore) PutBatch(ctx context.Context, values []interface{
 }
 
 // PutAll Add values as a single operation and returns it
-func (o *orbitDBDocumentStore) PutAll(ctx context.Context, values []interface{}) (operation.Operation, error) {
+func (o *orbitDBDocumentStore) PutAll(ctx context.Context, values []interface{}, pin bool) (operation.Operation, error) {
 	toAdd := map[string][]byte{}
 
 	for _, val := range values {
@@ -165,7 +165,7 @@ func (o *orbitDBDocumentStore) PutAll(ctx context.Context, values []interface{})
 	empty := ""
 	op := operation.NewOperationWithDocuments(&empty, "PUTALL", toAdd)
 
-	e, err := o.AddOperation(ctx, op, nil)
+	e, err := o.AddOperation(ctx, op, nil, pin)
 	if err != nil {
 		return nil, fmt.Errorf("error while adding operation: %w", err)
 	}

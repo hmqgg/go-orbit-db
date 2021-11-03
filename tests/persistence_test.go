@@ -52,7 +52,7 @@ func TestPersistence(t *testing.T) {
 		address = db.Address()
 
 		for i := 0; i < entryCount; i++ {
-			_, err := db.Add(ctx, []byte(fmt.Sprintf("hello%d", i)))
+			_, err := db.Add(ctx, []byte(fmt.Sprintf("hello%d", i)), false)
 			require.NoError(t, err)
 		}
 
@@ -144,7 +144,7 @@ func TestPersistence(t *testing.T) {
 			err = db.Load(ctx, infinity)
 			require.NoError(t, err)
 
-			_, err = db.Add(ctx, []byte(fmt.Sprintf("hello%d", entryCount+i)))
+			_, err = db.Add(ctx, []byte(fmt.Sprintf("hello%d", entryCount+i)), false)
 			require.NoError(t, err)
 
 			items, err := db.List(ctx, &orbitdb.StreamOptions{Amount: &infinity})
@@ -238,7 +238,7 @@ func TestPersistence(t *testing.T) {
 			address = db.Address()
 
 			for i := 0; i < entryCount; i++ {
-				op, err := db.Add(ctx, []byte(fmt.Sprintf("hello%d", i)))
+				op, err := db.Add(ctx, []byte(fmt.Sprintf("hello%d", i)), false)
 				require.NoError(t, err)
 
 				entryArr = append(entryArr, op)
@@ -288,7 +288,7 @@ func TestPersistence(t *testing.T) {
 				err = db.LoadFromSnapshot(ctx)
 				require.NoError(t, err)
 
-				_, err = db.Add(ctx, []byte(fmt.Sprintf("hello%d", entryCount+i)))
+				_, err = db.Add(ctx, []byte(fmt.Sprintf("hello%d", entryCount+i)), false)
 				require.NoError(t, err)
 
 				items, err := db.List(ctx, &orbitdb.StreamOptions{Amount: &infinity})

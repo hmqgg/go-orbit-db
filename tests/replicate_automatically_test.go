@@ -105,7 +105,7 @@ func TestReplicateAutomatically(t *testing.T) {
 		const entryCount = 10
 
 		for i := 0; i < entryCount; i++ {
-			_, err := db1.Add(ctx, []byte(fmt.Sprintf("hello%d", i)))
+			_, err := db1.Add(ctx, []byte(fmt.Sprintf("hello%d", i)), false)
 			require.NoError(t, err)
 		}
 
@@ -241,7 +241,7 @@ func TestReplicateAutomatically(t *testing.T) {
 		}()
 
 		for i := 0; i < entryCount; i++ {
-			_, err := db1.Add(ctx, []byte(fmt.Sprintf("hello%d", i)))
+			_, err := db1.Add(ctx, []byte(fmt.Sprintf("hello%d", i)), false)
 			require.NoError(t, err)
 		}
 
@@ -339,7 +339,7 @@ func TestReplicateAutomaticallyNonMocked(t *testing.T) {
 		const entryCount = 10
 
 		for i := 0; i < entryCount; i++ {
-			_, err := db1.Add(ctx, []byte(fmt.Sprintf("hello%d", i)))
+			_, err := db1.Add(ctx, []byte(fmt.Sprintf("hello%d", i)), false)
 			require.NoError(t, err)
 		}
 
@@ -475,7 +475,7 @@ func TestReplicateAutomaticallyNonMocked(t *testing.T) {
 		}()
 
 		for i := 0; i < entryCount; i++ {
-			_, err := db1.Add(ctx, []byte(fmt.Sprintf("hello%d", i)))
+			_, err := db1.Add(ctx, []byte(fmt.Sprintf("hello%d", i)), false)
 			require.NoError(t, err)
 		}
 
@@ -529,7 +529,7 @@ func TestReplicateAutomaticallyNonMocked(t *testing.T) {
 		tRefAdd := time.Now()
 
 		for i := 0; i < entryCount; i++ {
-			_, err := db1.Add(ctx, []byte(fmt.Sprintf("hello%d", i)))
+			_, err := db1.Add(ctx, []byte(fmt.Sprintf("hello%d", i)), false)
 			require.NoError(t, err)
 		}
 

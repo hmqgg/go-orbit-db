@@ -466,10 +466,10 @@ func TestCreateOpen(t *testing.T) {
 			logStore, ok := db.(orbitdb.EventLogStore)
 			require.True(t, ok)
 
-			_, err = logStore.Add(ctx, []byte("hello1"))
+			_, err = logStore.Add(ctx, []byte("hello1"), false)
 			require.NoError(t, err)
 
-			_, err = logStore.Add(ctx, []byte("hello2"))
+			_, err = logStore.Add(ctx, []byte("hello2"), false)
 			require.NoError(t, err)
 
 			db, err = orbit.Open(ctx, db.Address().String(), nil)

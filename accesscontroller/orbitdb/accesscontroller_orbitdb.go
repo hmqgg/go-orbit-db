@@ -141,7 +141,7 @@ func (o *orbitDBAccessController) Grant(ctx context.Context, capability string, 
 		return errors.Wrap(err, "unable to marshal capabilities")
 	}
 
-	_, err = o.kvStore.Put(ctx, capability, capabilitiesJSON)
+	_, err = o.kvStore.Put(ctx, capability, capabilitiesJSON, false)
 	if err != nil {
 		return errors.Wrap(err, "unable to put data in store")
 	}
@@ -168,12 +168,12 @@ func (o *orbitDBAccessController) Revoke(ctx context.Context, capability string,
 			return errors.Wrap(err, "unable to marshal capabilities")
 		}
 
-		_, err = o.kvStore.Put(ctx, capability, capabilitiesJSON)
+		_, err = o.kvStore.Put(ctx, capability, capabilitiesJSON, false)
 		if err != nil {
 			return errors.Wrap(err, "unable to persist capabilities")
 		}
 	} else {
-		_, err := o.kvStore.Delete(ctx, capability)
+		_, err := o.kvStore.Delete(ctx, capability, false)
 		if err != nil {
 			return errors.Wrap(err, "unable to remove capabilities")
 		}

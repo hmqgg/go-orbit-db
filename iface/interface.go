@@ -207,7 +207,7 @@ type Store interface {
 	AccessController() accesscontroller.Interface
 
 	// AddOperation Adds an operation to this store
-	AddOperation(ctx context.Context, op operation.Operation, onProgressCallback chan<- ipfslog.Entry) (ipfslog.Entry, error)
+	AddOperation(ctx context.Context, op operation.Operation, onProgressCallback chan<- ipfslog.Entry, pin bool) (ipfslog.Entry, error)
 
 	// Logger Returns the logger
 	Logger() *zap.Logger
@@ -225,7 +225,7 @@ type EventLogStore interface {
 	Store
 
 	// Add Appends data to the log
-	Add(ctx context.Context, data []byte) (operation.Operation, error)
+	Add(ctx context.Context, data []byte, pin bool) (operation.Operation, error)
 
 	// Get Fetches an entry of the log
 	Get(ctx context.Context, cid cid.Cid) (operation.Operation, error)
@@ -245,10 +245,10 @@ type KeyValueStore interface {
 	All() map[string][]byte
 
 	// Put Sets the value for a key of the map
-	Put(ctx context.Context, key string, value []byte) (operation.Operation, error)
+	Put(ctx context.Context, key string, value []byte, pin bool) (operation.Operation, error)
 
 	// Delete Clears the value for a key of the map
-	Delete(ctx context.Context, key string) (operation.Operation, error)
+	Delete(ctx context.Context, key string, pin bool) (operation.Operation, error)
 
 	// Get Retrieves the value for a key of the map
 	Get(ctx context.Context, key string) ([]byte, error)
@@ -264,16 +264,16 @@ type DocumentStore interface {
 	Store
 
 	// Put Stores the document
-	Put(ctx context.Context, document interface{}) (operation.Operation, error)
+	Put(ctx context.Context, document interface{}, pin bool) (operation.Operation, error)
 
 	// Delete Clears the document for a key
-	Delete(ctx context.Context, key string) (operation.Operation, error)
+	Delete(ctx context.Context, key string, pin bool) (operation.Operation, error)
 
 	// PutBatch Add values as multiple operations and returns the latest
-	PutBatch(ctx context.Context, values []interface{}) (operation.Operation, error)
+	PutBatch(ctx context.Context, values []interface{}, pin bool) (operation.Operation, error)
 
 	// PutAll Add values as a single operation and returns it
-	PutAll(ctx context.Context, values []interface{}) (operation.Operation, error)
+	PutAll(ctx context.Context, values []interface{}, pin bool) (operation.Operation, error)
 
 	// Get Retrieves the document for a key
 	Get(ctx context.Context, key string, opts *DocumentStoreGetOptions) ([]interface{}, error)

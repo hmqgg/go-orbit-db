@@ -73,7 +73,7 @@ func testingDocsStore(t *testing.T, dir string) {
 		documentUppercase := map[string]interface{}{"_id": "DOCUPPER1", "hello": "world"}
 
 		t.Run("put/get", func(t *testing.T) {
-			_, err := db.Put(ctx, document)
+			_, err := db.Put(ctx, document, false)
 			require.NoError(t, err)
 
 			docs, err := db.Get(ctx, "doc1", &iface.DocumentStoreGetOptions{CaseInsensitive: false})
@@ -82,7 +82,7 @@ func testingDocsStore(t *testing.T, dir string) {
 			require.Equal(t, document, docs[0])
 		})
 
-		_, err = db.Put(ctx, documentUppercase)
+		_, err = db.Put(ctx, documentUppercase, false)
 		require.NoError(t, err)
 
 		t.Run("get case insensitive", func(t *testing.T) {
@@ -108,7 +108,7 @@ func testingDocsStore(t *testing.T, dir string) {
 		})
 
 		t.Run("put updates a value", func(t *testing.T) {
-			_, err = db.Put(ctx, documentUpdate1)
+			_, err = db.Put(ctx, documentUpdate1, false)
 			require.NoError(t, err)
 
 			docs, err := db.Get(ctx, "doc1", &iface.DocumentStoreGetOptions{CaseInsensitive: false})
@@ -119,15 +119,15 @@ func testingDocsStore(t *testing.T, dir string) {
 
 		t.Run("put/get - multiple keys", func(t *testing.T) {
 			documentOne := map[string]interface{}{"_id": "doc1", "hello": "world"}
-			_, err := db.Put(ctx, documentOne)
+			_, err := db.Put(ctx, documentOne, false)
 			require.NoError(t, err)
 
 			documentTwo := map[string]interface{}{"_id": "doc2", "hello": "galaxy"}
-			_, err = db.Put(ctx, documentTwo)
+			_, err = db.Put(ctx, documentTwo, false)
 			require.NoError(t, err)
 
 			documentThree := map[string]interface{}{"_id": "doc3", "hello": "universe"}
-			_, err = db.Put(ctx, documentThree)
+			_, err = db.Put(ctx, documentThree, false)
 			require.NoError(t, err)
 
 			docsOne, err := db.Get(ctx, "doc1", &iface.DocumentStoreGetOptions{CaseInsensitive: false})
@@ -152,13 +152,13 @@ func testingDocsStore(t *testing.T, dir string) {
 			doc2 := map[string]interface{}{"_id": "hello universe", "doc": "all the things"}
 			doc3 := map[string]interface{}{"_id": "sup world", "doc": "other things"}
 
-			_, err := db.Put(ctx, doc1)
+			_, err := db.Put(ctx, doc1, false)
 			require.NoError(t, err)
 
-			_, err = db.Put(ctx, doc2)
+			_, err = db.Put(ctx, doc2, false)
 			require.NoError(t, err)
 
-			_, err = db.Put(ctx, doc3)
+			_, err = db.Put(ctx, doc3, false)
 			require.NoError(t, err)
 
 			fetchedDocs, err := db.Get(ctx, "hello", &iface.DocumentStoreGetOptions{PartialMatches: true})
@@ -172,13 +172,13 @@ func testingDocsStore(t *testing.T, dir string) {
 			doc2 := map[string]interface{}{"_id": "hello universe", "doc": "all the things"}
 			doc3 := map[string]interface{}{"_id": "sup world", "doc": "other things"}
 
-			_, err := db.Put(ctx, doc1)
+			_, err := db.Put(ctx, doc1, false)
 			require.NoError(t, err)
 
-			_, err = db.Put(ctx, doc2)
+			_, err = db.Put(ctx, doc2, false)
 			require.NoError(t, err)
 
-			_, err = db.Put(ctx, doc3)
+			_, err = db.Put(ctx, doc3, false)
 			require.NoError(t, err)
 
 			fetchedDocs, err := db.Get(ctx, "hello", &iface.DocumentStoreGetOptions{PartialMatches: false})
@@ -187,10 +187,10 @@ func testingDocsStore(t *testing.T, dir string) {
 
 		t.Run("deletes a key", func(t *testing.T) {
 			document := map[string]interface{}{"_id": "doc1", "hello": "world"}
-			_, err := db.Put(ctx, document)
+			_, err := db.Put(ctx, document, false)
 			require.NoError(t, err)
 
-			_, err = db.Delete(ctx, "doc1")
+			_, err = db.Delete(ctx, "doc1", false)
 			require.NoError(t, err)
 
 			docs, err := db.Get(ctx, "doc1", &iface.DocumentStoreGetOptions{CaseInsensitive: false})
@@ -200,18 +200,18 @@ func testingDocsStore(t *testing.T, dir string) {
 
 		t.Run("deletes a key after multiple updates", func(t *testing.T) {
 			documentOne := map[string]interface{}{"_id": "doc1", "hello": "world"}
-			_, err := db.Put(ctx, documentOne)
+			_, err := db.Put(ctx, documentOne, false)
 			require.NoError(t, err)
 
 			documentTwo := map[string]interface{}{"_id": "doc1", "hello": "galaxy"}
-			_, err = db.Put(ctx, documentTwo)
+			_, err = db.Put(ctx, documentTwo, false)
 			require.NoError(t, err)
 
 			documentThree := map[string]interface{}{"_id": "doc1", "hello": "universe"}
-			_, err = db.Put(ctx, documentThree)
+			_, err = db.Put(ctx, documentThree, false)
 			require.NoError(t, err)
 
-			_, err = db.Delete(ctx, "doc1")
+			_, err = db.Delete(ctx, "doc1", false)
 			require.NoError(t, err)
 
 			docs, err := db.Get(ctx, "doc1", &iface.DocumentStoreGetOptions{CaseInsensitive: false})
@@ -231,7 +231,7 @@ func testingDocsStore(t *testing.T, dir string) {
 			doc2 := map[string]interface{}{"_id": "hello world", "doc": "some things"}
 
 			t.Run("put", func(t *testing.T) {
-				_, err := db.Put(ctx, doc1)
+				_, err := db.Put(ctx, doc1, false)
 				require.NoError(t, err)
 
 				value, err := db.Get(ctx, "all", &iface.DocumentStoreGetOptions{PartialMatches: true})
@@ -242,7 +242,7 @@ func testingDocsStore(t *testing.T, dir string) {
 			})
 
 			t.Run("matches specified index", func(t *testing.T) {
-				_, err = db.Put(ctx, doc2)
+				_, err = db.Put(ctx, doc2, false)
 				require.NoError(t, err)
 
 				value1, err := db.Get(ctx, "all", &iface.DocumentStoreGetOptions{PartialMatches: true})
@@ -269,7 +269,7 @@ func testingDocsStore(t *testing.T, dir string) {
 			doc2 := map[string]interface{}{"_id": "id2", "doc": "some things"}
 			doc3 := map[string]interface{}{"_id": "id3", "doc": "more things"}
 
-			_, err = db.PutAll(ctx, []interface{}{doc1, doc2, doc3})
+			_, err = db.PutAll(ctx, []interface{}{doc1, doc2, doc3}, false)
 			require.NoError(t, err)
 
 			value, err := db.Get(ctx, "", &iface.DocumentStoreGetOptions{PartialMatches: true})
@@ -314,7 +314,7 @@ func testingDocsStore(t *testing.T, dir string) {
 				doc4 := map[string]interface{}{"_id": "hey universe", "doc": ""}
 
 				for _, doc := range []map[string]interface{}{doc1, doc2, doc3, doc4} {
-					_, err := db.Put(ctx, doc)
+					_, err := db.Put(ctx, doc, false)
 					require.NoError(t, err)
 				}
 
@@ -346,10 +346,10 @@ func testingDocsStore(t *testing.T, dir string) {
 				doc4 := map[string]interface{}{"_id": "hey universe", "doc": ""}
 
 				for _, doc := range []map[string]interface{}{doc1, doc2, doc3, doc4} {
-					_, err := db.Put(ctx, doc)
+					_, err := db.Put(ctx, doc, false)
 					require.NoError(t, err)
 				}
-				_, err = db.Delete(ctx, "hello world")
+				_, err = db.Delete(ctx, "hello world", false)
 				require.NoError(t, err)
 
 				value, err := db.Query(ctx, viewsFilter(4))

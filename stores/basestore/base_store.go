@@ -656,7 +656,7 @@ func intPtr(i int) *int {
 	return &i
 }
 
-func (b *BaseStore) AddOperation(ctx context.Context, op operation.Operation, onProgressCallback chan<- ipfslog.Entry) (ipfslog.Entry, error) {
+func (b *BaseStore) AddOperation(ctx context.Context, op operation.Operation, onProgressCallback chan<- ipfslog.Entry, pin bool) (ipfslog.Entry, error) {
 	ctx, span := b.tracer.Start(ctx, "add-operation")
 	defer span.End()
 
@@ -667,7 +667,10 @@ func (b *BaseStore) AddOperation(ctx context.Context, op operation.Operation, on
 
 	oplog := b.OpLog()
 
-	e, err := oplog.Append(ctx, data, &ipfslog.AppendOptions{PointerCount: b.referenceCount})
+	e, err := oplog.Append(ctx, data, &ipfslog.AppendOptions{
+		PointerCount: b.referenceCount,
+		Pin:          pin,
+	})
 	if err != nil {
 		return nil, errors.Wrap(err, "unable to append data on log")
 	}

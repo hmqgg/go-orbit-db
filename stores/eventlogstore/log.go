@@ -32,10 +32,10 @@ func (o *orbitDBEventLogStore) List(ctx context.Context, options *iface.StreamOp
 	return operations, nil
 }
 
-func (o *orbitDBEventLogStore) Add(ctx context.Context, value []byte) (operation.Operation, error) {
+func (o *orbitDBEventLogStore) Add(ctx context.Context, value []byte, pin bool) (operation.Operation, error) {
 	op := operation.NewOperation(nil, "ADD", value)
 
-	e, err := o.AddOperation(ctx, op, nil)
+	e, err := o.AddOperation(ctx, op, nil, pin)
 	if err != nil {
 		return nil, errors.Wrap(err, "error while deleting value")
 	}
